@@ -3,7 +3,7 @@ name: Release Please
 on:
   push:
     branches:
-      - develop
+      - main
 
 permissions:
   contents: write
@@ -16,17 +16,21 @@ jobs:
       - uses: googleapis/release-please-action@v4
         id: release
         with:
-          config-file: .release-please-config-develop.json
+          config-file: .release-please-config.json
           manifest-file: .release-please-manifest.json
-          target-branch: develop
+          target-branch: main
 
-      # Optional: Create a GitHub pre-release for develop
-      - name: Create GitHub Pre-release
+      # Check out the repository
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+
+      # Create GitHub Release
+      - name: Create GitHub Release
         if: ${{ steps.release.outputs.release_created }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create ${{ steps.release.outputs.tag_name }} \
-            --title "Development Release ${{ steps.release.outputs.tag_name }}" \
+            --title "Release Candidate ${{ steps.release.outputs.tag_name }}" \
             --notes "${{ steps.release.outputs.changelog }}" \
             --prerelease
