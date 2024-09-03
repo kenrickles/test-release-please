@@ -20,6 +20,10 @@ jobs:
           manifest-file: .release-please-manifest.json
           target-branch: main
 
+      # Check out the repository
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+
       # Create GitHub Release
       - name: Create GitHub Release
         if: ${{ steps.release.outputs.release_created }}
