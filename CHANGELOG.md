@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0-rc](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-1.10.0-rc...test-nest-js-app-1.11.0-rc) (2024-09-03)
+
+
+### Features
+
+* GGG-123: new testing ([d613148](https://github.com/kenrickles/test-release-please/commit/d613148e997bf6c90600cbcaab299907142121b2))
+
 ## [1.10.0-rc](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-1.9.0-rc...test-nest-js-app-1.10.0-rc) (2024-09-03)
 
 
