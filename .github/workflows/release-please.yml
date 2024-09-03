@@ -22,7 +22,19 @@ jobs:
 
       # Check out the repository
       - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
+        if: ${{ steps.release.outputs.pr }}
+
+      # Auto-rebase the release PR
+      - name: Auto-rebase release PR
+        if: ${{ steps.release.outputs.pr }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr checkout ${{ steps.release.outputs.pr }}
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rebase origin/main
+          git push --force-with-lease
 
       # Create GitHub Release
       - name: Create GitHub Release
