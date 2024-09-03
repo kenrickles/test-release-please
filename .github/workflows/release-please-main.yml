@@ -1,0 +1,37 @@
+name: Release Please Main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: google-github-actions/release-please-action@v4
+        id: release
+        with:
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json
+          default-branch: main
+          prerelease: true
+          prerelease-type: rc
+
+      # The following steps run only if a release PR was merged
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+      
+      - name: Create GitHub Release
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.release.outputs.tag_name }} \
+            --title "${{ steps.release.outputs.tag_name }}" \
+            --notes "${{ steps.release.outputs.changelog }}" \
+            --prerelease

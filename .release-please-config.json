@@ -7,7 +7,13 @@
       "bump-minor-pre-major": true,
       "bump-patch-for-minor-pre-major": true,
       "draft": false,
-      "prerelease": false
+      "prerelease": true,
+      "include-v-in-tag": false,
+      "versioning": "default",
+      "prerelease-type": "rc",
+      "extra-files": [
+        "package.json"
+      ]
     }
   },
   "$schema": "https://raw.githubusercontent.com/google-github-actions/release-please-action/main/schema.json"
