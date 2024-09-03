@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-1.1.0...test-nest-js-app-1.2.0) (2024-09-03)
+
+
+### Features
+
+* ci: update ci for main and develop branch handling ([3550fdc](https://github.com/kenrickles/test-release-please/commit/3550fdc7c37ed44b28c6249cfb4b9be3405c8b80))
+
 ## [1.1.0](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-v1.0.0...test-nest-js-app-1.1.0) (2024-09-03)
 
 
