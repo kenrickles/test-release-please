@@ -10,7 +10,7 @@
       "prerelease": true,
       "prerelease-type": "dev",
       "include-v-in-tag": false,
-      "versioning": "default",
+      "versioning": "prerelease",
       "extra-files": [
         "package.json"
       ]
