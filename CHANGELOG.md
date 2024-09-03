@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0-dev](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-1.2.0...test-nest-js-app-1.3.0-dev) (2024-09-03)
+
+
+### Features
+
+* ci: test versioning ([945cebb](https://github.com/kenrickles/test-release-please/commit/945cebbbbd158217dcceb3d19da1db8645ea5692))
+
 ## [1.2.0](https://github.com/kenrickles/test-release-please/compare/test-nest-js-app-1.1.0...test-nest-js-app-1.2.0) (2024-09-03)
 
 
