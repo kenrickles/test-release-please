@@ -30,8 +30,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create ${{ steps.release.outputs.tag_name }} \
-            --title "Release Candidate ${{ steps.release.outputs.tag_name }}" \
-            --notes "${{ steps.release.outputs.changelog }}" \
-            --prerelease
+          if ! gh release view ${{ steps.release.outputs.tag_name }} &>/dev/null; then
+            gh release create ${{ steps.release.outputs.tag_name }} \
+              --title "Release Candidate ${{ steps.release.outputs.tag_name }}" \
+              --notes "${{ steps.release.outputs.changelog }}" \
+              --prerelease
+          else
+            echo "Release ${{ steps.release.outputs.tag_name }} already exists. Skipping creation."
+          fi
 
