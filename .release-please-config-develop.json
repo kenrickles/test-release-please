@@ -8,9 +8,9 @@
       "bump-patch-for-minor-pre-major": true,
       "draft": false,
       "prerelease": true,
-      "prerelease-type": "rc",
+      "prerelease-type": "dev",
       "include-v-in-tag": false,
-      "versioning": "default",
+      "versioning": "prerelease",
       "extra-files": [
         "package.json"
       ]
