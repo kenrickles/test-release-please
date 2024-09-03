@@ -1,1 +1,32 @@
- 
+name: Release Please
+
+on:
+  push:
+    branches:
+      - develop
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          config-file: .release-please-config-develop.json
+          manifest-file: .release-please-manifest.json
+          target-branch: develop
+
+      # Optional: Create a GitHub pre-release for develop
+      - name: Create GitHub Pre-release
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.release.outputs.tag_name }} \
+            --title "Development Release ${{ steps.release.outputs.tag_name }}" \
+            --notes "${{ steps.release.outputs.changelog }}" \
+            --prerelease
