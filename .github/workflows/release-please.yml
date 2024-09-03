@@ -38,4 +38,3 @@ jobs:
           else
             echo "Release ${{ steps.release.outputs.tag_name }} already exists. Skipping creation."
           fi
-
