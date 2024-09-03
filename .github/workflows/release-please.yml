@@ -19,22 +19,3 @@ jobs:
           config-file: .release-please-config.json
           manifest-file: .release-please-manifest.json
           target-branch: main
-
-      # Check out the repository
-      - uses: actions/checkout@v4
-        if: ${{ steps.release.outputs.release_created }}
-
-      # Create GitHub Release
-      - name: Create GitHub Release
-        if: ${{ steps.release.outputs.release_created }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if ! gh release view ${{ steps.release.outputs.tag_name }} &>/dev/null; then
-            gh release create ${{ steps.release.outputs.tag_name }} \
-              --title "Release Candidate ${{ steps.release.outputs.tag_name }}" \
-              --notes "${{ steps.release.outputs.changelog }}" \
-              --prerelease
-          else
-            echo "Release ${{ steps.release.outputs.tag_name }} already exists. Skipping creation."
-          fi
